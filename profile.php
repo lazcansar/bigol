@@ -17,8 +17,27 @@ require_once 'component.php';
 
 <section class="px-4 sm:px-0">
     <div class="container mx-auto">
-        <div class="flex flex-row items-center justify-center">
-
+        <h1 class="font-bold text-2xl text-amber-500 mb-2">Kullanıcı Profili</h1>
+        <div class="flex flex-col">
+            <?php
+            $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            if($id === $row['id']) {
+                $iban = $row['ibanConfirm'];
+            }
+            if ($iban == true) {
+                $ibanStatus = 'Aktif';
+            } else {
+                $ibanStatus = 'Deaktif';
+            }
+            ?>
+            <p class="px-4 py-2 mb-4 bg-blue-600 text-white">Premium Üyelik: <?= $ibanStatus ?></p>
+            <p class="px-4 py-2 bg-amber-500 text-white mb-4"><i class="bi bi-info-circle"></i> Tahminler sayfasını görüntüleyebilmek için <strong>premium üye</strong> olmanız gereklidir.</p>
+            <p class="px-4 py-2 bg-amber-700 text-white mb-4"><i class="bi bi-info-circle"></i> 30 gün süre ile <strong>Premium üye</strong> olabilmek için aşağıda belirtilen IBAN numarasına 100 TL göndermeniz ve gönderi sonrasında <a href="mailto:" class="font-bold">test@harbigol.com</a> posta adresine ödeme bildirimine ilişkin mail göndermeniz gerekir.</p>
+            <p class="px-4 py-2 bg-teal-900 text-white">TR12 0001 0000 1200 1300 0434 09</p>
         </div>
     </div>
 </section>
