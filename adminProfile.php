@@ -6,6 +6,48 @@ require_once 'component.php';
 @$role = $_SESSION['role'];
 @$name = $_SESSION['name'];
 @$id = $_SESSION['id'];
+
+
+// Status Change Request Method Get
+if (@$_GET['userIdChangeIbanStatus']) {
+    $userId = filter_var($_GET['userIdChangeIbanStatus'], FILTER_SANITIZE_NUMBER_INT);
+
+
+    $stmt = $db->prepare("SELECT ibanConfirm FROM users WHERE id = ?");
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    if ($user) {
+        $currentIbanStatus = $user['ibanConfirm'];
+        $newIbanStatus = ($currentIbanStatus == 0) ? 1 : 0;
+
+        $currentTime = date('Y-m-d H:i:s');
+
+        $updateStmt = $db->prepare("UPDATE users SET ibanConfirm = ?, updated_at =? WHERE id = ?");
+        $updateStmt->bind_param("isi", $newIbanStatus, $currentTime, $userId);
+
+        if ($updateStmt->execute()) {
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "adminProfile.php?IbanStatusChange=success";';
+            echo '</script>';
+            exit();
+        } else {
+            echo '<script type="text/javascript">';
+            echo 'alert("IBAN onay durumu güncellenirken bir hata oluştu: ' . addslashes($updateStmt->error) . '");';
+            echo 'window.location.href = "adminProfile.php?IbanStatusChange=error";';
+            echo '</script>';
+            exit();
+        }
+        $updateStmt->close();
+    } else {
+        echo "Belirtilen ID'ye sahip kullanıcı bulunamadı.";
+    }
+    $stmt->close();
+}
+
+
 ?>
 <section class="px-4 sm:px-0 bg-gray-100 w-full">
     <div class="flex flex-row items-center justify-between">
@@ -41,43 +83,34 @@ require_once 'component.php';
                     <tr>
                         <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Kullanıcı Adı</th>
                         <th class="py-3 px-4 uppercase font-semibold text-sm text-left">E-posta</th>
-                        <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Telefon</th>
                         <th class="py-3 px-4 uppercase font-semibold text-sm text-center">IBAN Onayı</th>
                     </tr>
                     </thead>
                     <tbody class="text-gray-700">
-                    <tr class="border-b border-gray-200 hover:bg-gray-100">
-                        <td class="py-3 px-4">Ahmet Yılmaz</td>
-                        <td class="py-3 px-4">ahmet.yilmaz@example.com</td>
-                        <td class="py-3 px-4">+90 5XX XXX XX XX</td>
-                        <td class="py-3 px-4 text-center">
-                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">Onaylı</span>
-                        </td>
-                    </tr>
-                    <tr class="border-b border-gray-200 hover:bg-gray-100">
-                        <td class="py-3 px-4">Ayşe Demir</td>
-                        <td class="py-3 px-4">ayse.demir@example.com</td>
-                        <td class="py-3 px-4">+90 5XX XXX XX XX</td>
-                        <td class="py-3 px-4 text-center">
-                            <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full">Beklemede</span>
-                        </td>
-                    </tr>
-                    <tr class="border-b border-gray-200 hover:bg-gray-100">
-                        <td class="py-3 px-4">Mehmet Kara</td>
-                        <td class="py-3 px-4">mehmet.kara@example.com</td>
-                        <td class="py-3 px-4">+90 5XX XXX XX XX</td>
-                        <td class="py-3 px-4 text-center">
-                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">Onaylı</span>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-gray-100">
-                        <td class="py-3 px-4">Zeynep Can</td>
-                        <td class="py-3 px-4">zeynep.can@example.com</td>
-                        <td class="py-3 px-4">+90 5XX XXX XX XX</td>
-                        <td class="py-3 px-4 text-center">
-                            <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full">Beklemede</span>
-                        </td>
-                    </tr>
+                        <?php
+                        $stmt = $db->prepare("SELECT * FROM users");
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        $allUsers = $result->fetch_all(MYSQLI_ASSOC);
+                        foreach ($allUsers as $user) {
+                            $userIban = $user['ibanConfirm'];
+                            if ($userIban == true) {
+                                $ibanConfirm = 'Aktif';
+                            } else {
+                                $ibanConfirm = 'Deaktif';
+                            }
+                            echo '<tr class="border-b border-gray-200 hover:bg-gray-100">
+                                    <td class="py-3 px-4">'.$user['name'].'</td>
+                                    <td class="py-3 px-4">'.$user['email'].'</td>
+                                    <td class="py-3 px-4 text-center">
+                                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">'.$ibanConfirm.'</span>
+                                    <a href="?userIdChangeIbanStatus='.$user['id'].'" class="px-2 py-1 font-semibold leading-tight text-white bg-blue-400 rounded-full">Değiştir</a>
+                                    </td>
+                                  </tr>';
+                        }
+
+                        ?>
+
                     </tbody>
                 </table>
             </div>
