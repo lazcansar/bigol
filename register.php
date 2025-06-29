@@ -17,7 +17,7 @@ require_once 'component.php';
                         echo inputCompontent("password", "password", 'Şifre');
                         ?>
                         <div class="flex flex-row flex-wrap items-center justify-between">
-                            <button type="submit" class="inline-block bg-green-600 hover:bg-green-500 text-white transition px-4 py-2 rounded-lg">Kayıt Ol</button>
+                            <button type="submit" name="register" class="inline-block bg-green-600 hover:bg-green-500 text-white transition px-4 py-2 rounded-lg">Kayıt Ol</button>
                             <a href="login.php" class="inline-block bg-blue-600 hover:bg-blue-500 text-white transition px-4 py-2 rounded-lg">Hesabınız mı var, hemen giriş yapın</a>
                         </div>
                     </form>
