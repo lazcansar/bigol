@@ -60,6 +60,18 @@ if (@$_GET['userIdChangeIbanStatus']) {
 <section class="px-4 sm:px-0">
     <div class="container mx-auto">
         <h1 class="font-bold text-2xl text-amber-500 mb-2">Kullanıcı Profili</h1>
+        <?php
+        if (@$_GET['IbanStatusChange']) {
+            if ($_GET['IbanStatusChange'] == 'success') {
+                echo '<div class="px-4 py-2 bg-green-600 text-white rounded mb-4" role="alert"><i class="bi bi-check-circle"></i> IBAN durumu güncellendi.</div>';
+            }
+            if ($_GET['IbanStatusChange'] == 'error') {
+                echo '<div class="px-4 py-2 bg-amber-700 text-white rounded mb-4" role="alert"><i class="bi bi-exclamation-diamond"></i> IBAN güncelleme sırasında hata meydana geldi!</div>';
+            }
+        }
+        ?>
+
+
         <div class="flex flex-col">
             <?php
             $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
