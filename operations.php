@@ -9,7 +9,7 @@ if (isset($_POST['register'])) {
     $password = $_POST['password'];
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // DB Request Post
+    // DB Request
     $stmt = $db->prepare("INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $name, $email, $phone, $hashedPassword);
     if ($stmt->execute()) {
