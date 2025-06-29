@@ -9,7 +9,7 @@ require_once 'component.php';
             <div class="w-[540px]">
                 <div class="border p-4 rounded shadow bg-white">
                     <h1 class="mb-4 font-medium text-xl text-teal-900">Hesap Oluştur</h1>
-                    <form action="" method="POST">
+                    <form action="operations.php" method="POST">
                         <?php
                         echo inputCompontent("text", "name", 'Ad Soyad');
                         echo inputCompontent("text", "email", 'E-Mail');
