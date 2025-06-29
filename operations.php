@@ -37,14 +37,19 @@ if (isset($_POST['login'])) {
         $_SESSION['id'] = $row['id'];
         $_SESSION['email'] = $row['email'];
         $_SESSION['name'] = $row['name'];
-        $_SESSION['phone'] = $row['phone'];
-        header("Location: index.php");
-        exit();
+        $_SESSION['role'] = $row['role'];
+        if ($row['role'] == '1') {
+            header("Location: adminProfile.php");
+            exit();
+        } else {
+            header("Location: profile.php");
+            exit();
+        }
     } else {
-        header("Location: register.php?login=fail");
+        header("Location: login.php?login=fail");
         exit();
     }
-    $stmt->close();
+
 }
 
 
