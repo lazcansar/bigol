@@ -84,6 +84,7 @@ if (@$_GET['userIdChangeIbanStatus']) {
                         <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Kullanıcı Adı</th>
                         <th class="py-3 px-4 uppercase font-semibold text-sm text-left">E-posta</th>
                         <th class="py-3 px-4 uppercase font-semibold text-sm text-center">IBAN Onayı</th>
+                        <th class="py-3 px-4 uppercase font-semibold text-sm text-center">IBAN Onay Tarihi</th>
                     </tr>
                     </thead>
                     <tbody class="text-gray-700">
@@ -106,6 +107,7 @@ if (@$_GET['userIdChangeIbanStatus']) {
                                     <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">'.$ibanConfirm.'</span>
                                     <a href="?userIdChangeIbanStatus='.$user['id'].'" class="px-2 py-1 font-semibold leading-tight text-white bg-blue-400 rounded-full">Değiştir</a>
                                     </td>
+                                    <td class="py-3 px-4 text-center">'.$user['updated_at'].'</td>
                                   </tr>';
                         }
 
