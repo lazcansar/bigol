@@ -7,6 +7,16 @@ require_once 'component.php';
     <div class="container mx-auto">
         <div class="flex flex-row items-center justify-center">
             <div class="w-[540px]">
+                <?php
+                if ($_GET['register']) {
+                    if ($_GET['register'] == 'success') {
+                        echo '<div class="px-4 py-2 bg-green-600 text-white rounded mb-4" role="alert"><i class="bi bi-check-circle"></i> Kayıt Başarılı.</div>';
+                    }
+                    if ($_GET['register'] == 'fail') {
+                        echo '<div class="px-4 py-2 bg-amber-700 text-white rounded mb-4" role="alert"><i class="bi bi-exclamation-diamond"></i> Kayıt sırasında hata meydana geldi!</div>';
+                    }
+                }
+                ?>
                 <div class="border p-4 rounded shadow bg-white">
                     <h1 class="mb-4 font-medium text-xl text-teal-900">Hesap Oluştur</h1>
                     <form action="operations.php" method="POST">
