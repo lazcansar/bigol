@@ -34,6 +34,55 @@ require_once 'component.php';
                 $ibanStatus = 'Deaktif';
             }
             ?>
+
+            <div class="overflow-x-auto mb-4">
+                <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+                    <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Kullanıcı Adı</th>
+                        <th class="py-3 px-4 uppercase font-semibold text-sm text-left">E-posta</th>
+                        <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Telefon</th>
+                        <th class="py-3 px-4 uppercase font-semibold text-sm text-center">IBAN Onayı</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-4">Ahmet Yılmaz</td>
+                        <td class="py-3 px-4">ahmet.yilmaz@example.com</td>
+                        <td class="py-3 px-4">+90 5XX XXX XX XX</td>
+                        <td class="py-3 px-4 text-center">
+                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">Onaylı</span>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-4">Ayşe Demir</td>
+                        <td class="py-3 px-4">ayse.demir@example.com</td>
+                        <td class="py-3 px-4">+90 5XX XXX XX XX</td>
+                        <td class="py-3 px-4 text-center">
+                            <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full">Beklemede</span>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-4">Mehmet Kara</td>
+                        <td class="py-3 px-4">mehmet.kara@example.com</td>
+                        <td class="py-3 px-4">+90 5XX XXX XX XX</td>
+                        <td class="py-3 px-4 text-center">
+                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">Onaylı</span>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-gray-100">
+                        <td class="py-3 px-4">Zeynep Can</td>
+                        <td class="py-3 px-4">zeynep.can@example.com</td>
+                        <td class="py-3 px-4">+90 5XX XXX XX XX</td>
+                        <td class="py-3 px-4 text-center">
+                            <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full">Beklemede</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
             <p class="px-4 py-2 mb-4 bg-blue-600 text-white">Premium Üyelik: <?= $ibanStatus ?></p>
             <p class="px-4 py-2 bg-amber-500 text-white mb-4"><i class="bi bi-info-circle"></i> Tahminler sayfasını görüntüleyebilmek için <strong>premium üye</strong> olmanız gereklidir.</p>
             <p class="px-4 py-2 bg-amber-700 text-white mb-4"><i class="bi bi-info-circle"></i> 30 gün süre ile <strong>Premium üye</strong> olabilmek için aşağıda belirtilen IBAN numarasına 100 TL göndermeniz ve gönderi sonrasında <a href="mailto:" class="font-bold">test@harbigol.com</a> posta adresine ödeme bildirimine ilişkin mail göndermeniz gerekir.</p>
