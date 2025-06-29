@@ -23,7 +23,6 @@ require_once 'component.php';
                         <?php
                         echo inputCompontent("text", "name", 'Ad Soyad');
                         echo inputCompontent("text", "email", 'E-Mail');
-                        echo inputCompontent("tel", "phone", 'Telefon Numarası');
                         echo inputCompontent("password", "password", 'Şifre');
                         ?>
                         <div class="flex flex-row flex-wrap items-center justify-between">
