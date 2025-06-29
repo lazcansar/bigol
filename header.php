@@ -1,10 +1,17 @@
+<?php
+// Hataları göster
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require_once 'dbCon.php';
+?>
 <!DOCTYPE html>
 <html lang="en" class="light">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Harbigol - Pro Sports Analytics</title>
-    <meta name="description" content="Latest AI-powered football, basketball & NBA predictions, advanced xG stats, betting tips and daily analysis. Download SureWinX now!" />
+    <meta name="description" content="Latest AI-powered football, basketball & NBA predictions, advanced xG stats, betting tips and daily analysis. Download now!" />
     <link rel="icon" type="image/png" href=""/>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -103,7 +110,7 @@
 <!-- HERO -->
 <div class="w-full flex flex-col items-center bg-gradient-to-br from-yellow-50 via-blue-50 to-white dark:from-blue-950 dark:via-gray-900 dark:to-gray-800 py-12 mb-8 animate__animated animate__fadeIn">
     <h1 class="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-yellow-500 to-blue-700 text-transparent bg-clip-text drop-shadow-xl">AI-Driven Football & Basketball Analysis</h1>
-    <p class="text-lg md:text-2xl text-gray-700 dark:text-gray-200 mb-5">Daily predictions powered by advanced stats & xG models. <span class="text-yellow-500 font-bold">Boost your betting success with Harbigol & SureWinX!</span></p>
+    <p class="text-lg md:text-2xl text-gray-700 dark:text-gray-200 mb-5">Daily predictions powered by advanced stats & xG models. <span class="text-yellow-500 font-bold">Boost your betting success with Harbigol!</span></p>
 </div>
 
 <!-- MAIN (SECTIONS) -->
