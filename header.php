@@ -92,7 +92,7 @@ require_once 'dbCon.php';
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
             <a class="flex items-center gap-3" href="/">
-                <img src="https://www.harbigol.com/wp-content/uploads/2025/06/Sari-Tipografik-Medya-Sirketi-Logosu.png" class="w-12 h-12 rounded-full border-2 border-yellow-400 shadow" alt="Logo">
+                <img src="logo-harbigol.png" class="w-12 h-12 rounded-full border-2 border-yellow-400 shadow" alt="Logo">
                 <span class="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-blue-500 text-transparent bg-clip-text animate__animated animate__pulse animate__infinite">Harbigol</span>
             </a>
             <div class="flex gap-3 items-center">
