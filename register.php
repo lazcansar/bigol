@@ -8,7 +8,7 @@ require_once 'component.php';
         <div class="flex flex-row items-center justify-center">
             <div class="w-[540px]">
                 <?php
-                if ($_GET['register']) {
+                if (@$_GET['register']) {
                     if ($_GET['register'] == 'success') {
                         echo '<div class="px-4 py-2 bg-green-600 text-white rounded mb-4" role="alert"><i class="bi bi-check-circle"></i> Kayıt Başarılı.</div>';
                     }

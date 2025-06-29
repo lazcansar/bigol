@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Hataları göster
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -90,10 +91,10 @@ require_once 'dbCon.php';
 <nav class="sticky top-0 z-40 backdrop-blur-xl bg-white/90 dark:bg-gray-900/80 shadow-md border-b border-gray-100 dark:border-gray-800 transition-all duration-300 animate__animated animate__slideInDown">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-            <div class="flex items-center gap-3">
+            <a class="flex items-center gap-3" href="/">
                 <img src="https://www.harbigol.com/wp-content/uploads/2025/06/Sari-Tipografik-Medya-Sirketi-Logosu.png" class="w-12 h-12 rounded-full border-2 border-yellow-400 shadow" alt="Logo">
                 <span class="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-blue-500 text-transparent bg-clip-text animate__animated animate__pulse animate__infinite">Harbigol</span>
-            </div>
+            </a>
             <div class="flex gap-3 items-center">
                 <button onclick="showSection('football')" class="nav-btn px-3 py-2 rounded-lg font-medium text-football-primary dark:text-football-accent hover:bg-football-primary/10 dark:hover:bg-football-accent/20 transition">
                     <i class="fas fa-futbol mr-1"></i>Football

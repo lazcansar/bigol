@@ -7,6 +7,14 @@ require_once 'component.php';
     <div class="container mx-auto">
         <div class="flex flex-row items-center justify-center">
             <div class="w-[540px]">
+                <?php
+                if (@$_GET['logout']) {
+                    if ($_GET['logout'] == true) {
+                        echo '<div class="px-4 py-2 bg-green-600 text-white rounded mb-4" role="alert"><i class="bi bi-check-circle"></i> Çıkış Başarılı.</div>';
+                    }
+                }
+                ?>
+
                 <div class="border p-4 rounded shadow bg-white">
                     <h1 class="mb-4 font-medium text-xl text-teal-900">Giriş Ekranı</h1>
                     <form action="operations.php" method="POST">
