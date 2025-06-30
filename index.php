@@ -221,21 +221,20 @@ require_once 'header.php';
           </div>
             <?php
             @$email = $_SESSION['email'];
-
             if ($role) {
-                echo '';
+                echo '<div class="glass p-6">
+            <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Match History</h3>
+            <div id="savedFootballMatches" class="space-y-4"></div>
+          </div>';
             } else {
                 echo '
                 <div class="px-4 py-2 bg-amber-500 text-white rounded">
-                Kayıtlı maçları görüntülemek için lütfen premium üye olun. Hemen hesap oluştur.
+                Kayıtlı maçları görüntülemek için lütfen premium üye olun. <a href="login.php" class="font-bold underline">Hemen giriş yap.</a>
                 </div>
                 ';
             }
             ?>
-          <div class="glass p-6">
-            <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Match History</h3>
-            <div id="savedFootballMatches" class="space-y-4"></div>
-          </div>
+
         </div>
       </div>
     </div>
