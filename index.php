@@ -1,153 +1,155 @@
 <?php
-
+// Hataları göster
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // DB bağlantısı
-//$dsn = 'mysql:host=localhost;dbname=harbigo1_analizxg;charset=utf8mb4';
-//$dbUser = 'root';
-//$dbPass = '';
-//$options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-//
-//try {
-//    $pdo = new PDO($dsn, $dbUser, $dbPass, $options);
-//} catch (PDOException $e) {
-//    die('Database connection failed: ' . $e->getMessage());
-//}
-//
-//// AJAX işlemleri
-//if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//    $action = $_POST['action'] ?? '';
-//    $password = $_POST['password'] ?? '';
-//
-//    if (in_array($action, ['save_football', 'save_basketball', 'save_nba', 'delete_match']) && $password !== '3005') {
-//        echo json_encode(['success' => false, 'message' => 'Wrong password!']);
-//        exit;
-//    }
-//
-//    switch ($action) {
-//        case 'save_football':
-//            try {
-//                $stmt = $pdo->prepare("INSERT INTO football_matches (name, match_date, score1, score2, score3, home_xg, home_xga, away_xg, away_xga, result, best_bet, best_conf, second_bet, second_conf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-//                $stmt->execute([
-//                    $_POST['name'],
-//                    $_POST['date'],
-//                    $_POST['score1'],
-//                    $_POST['score2'],
-//                    $_POST['score3'],
-//                    $_POST['home_xg'],
-//                    $_POST['home_xga'],
-//                    $_POST['away_xg'],
-//                    $_POST['away_xga'],
-//                    $_POST['result'],
-//                    $_POST['best_bet'],
-//                    $_POST['best_conf'],
-//                    $_POST['second_bet'],
-//                    $_POST['second_conf']
-//                ]);
-//                echo json_encode(['success' => true, 'message' => 'Football match saved!']);
-//            } catch (PDOException $e) {
-//                echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
-//            }
-//            break;
-//
-//        case 'save_basketball':
-//            try {
-//                $stmt = $pdo->prepare("INSERT INTO basketball_matches (name, match_date, home1, home2, home3, line_home, away1, away2, away3, line_away, match_line, verdict_match, verdict_home, verdict_away) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-//                $stmt->execute([
-//                    $_POST['name'],
-//                    $_POST['date'],
-//                    $_POST['home1'],
-//                    $_POST['home2'],
-//                    $_POST['home3'],
-//                    $_POST['line_home'],
-//                    $_POST['away1'],
-//                    $_POST['away2'],
-//                    $_POST['away3'],
-//                    $_POST['line_away'],
-//                    $_POST['match_line'],
-//                    $_POST['verdict_match'],
-//                    $_POST['verdict_home'],
-//                    $_POST['verdict_away']
-//                ]);
-//                echo json_encode(['success' => true, 'message' => 'Basketball match saved!']);
-//            } catch (PDOException $e) {
-//                echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
-//            }
-//            break;
-//
-//        case 'save_nba':
-//            try {
-//                $stmt = $pdo->prepare("INSERT INTO nba_matches (name, match_date, home1, home2, home3, line_home, away1, away2, away3, line_away, match_line, verdict_match, verdict_home, verdict_away) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-//                $stmt->execute([
-//                    $_POST['name'],
-//                    $_POST['date'],
-//                    $_POST['home1'],
-//                    $_POST['home2'],
-//                    $_POST['home3'],
-//                    $_POST['line_home'],
-//                    $_POST['away1'],
-//                    $_POST['away2'],
-//                    $_POST['away3'],
-//                    $_POST['line_away'],
-//                    $_POST['match_line'],
-//                    $_POST['verdict_match'],
-//                    $_POST['verdict_home'],
-//                    $_POST['verdict_away']
-//                ]);
-//                echo json_encode(['success' => true, 'message' => 'NBA match saved!']);
-//            } catch (PDOException $e) {
-//                echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
-//            }
-//            break;
-//
-//        case 'delete_match':
-//            try {
-//                $table = $_POST['table'];
-//                $id = $_POST['id'];
-//                $allowedTables = ['football_matches', 'basketball_matches', 'nba_matches'];
-//                if (in_array($table, $allowedTables)) {
-//                    $stmt = $pdo->prepare("DELETE FROM {$table} WHERE id = ?");
-//                    $stmt->execute([$id]);
-//                    echo json_encode(['success' => true, 'message' => 'Match deleted!']);
-//                } else {
-//                    echo json_encode(['success' => false, 'message' => 'Invalid table!']);
-//                }
-//            } catch (PDOException $e) {
-//                echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
-//            }
-//            break;
-//
-//        case 'load_matches':
-//            try {
-//                $type = $_POST['type'];
-//                $table = '';
-//                switch ($type) {
-//                    case 'football':
-//                        $table = 'football_matches';
-//                        break;
-//                    case 'basketball':
-//                        $table = 'basketball_matches';
-//                        break;
-//                    case 'nba':
-//                        $table = 'nba_matches';
-//                        break;
-//                    default:
-//                        echo json_encode(['success' => false, 'message' => 'Invalid type!']);
-//                        exit;
-//                }
-//                $stmt = $pdo->prepare("SELECT * FROM {$table} ORDER BY created_at DESC LIMIT 35");
-//                $stmt->execute();
-//                $matches = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//                echo json_encode(['success' => true, 'matches' => $matches]);
-//            } catch (PDOException $e) {
-//                echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
-//            }
-//            break;
-//    }
-//    exit;
-//}
+$dsn = 'mysql:host=localhost;dbname=bigol;charset=utf8mb4';
+$dbUser = 'root';
+$dbPass = '';
+$options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
+
+try {
+    $pdo = new PDO($dsn, $dbUser, $dbPass, $options);
+} catch (PDOException $e) {
+    die('Database connection failed: ' . $e->getMessage());
+}
+
+// AJAX işlemleri
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = $_POST['action'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    if (in_array($action, ['save_football', 'save_basketball', 'save_nba', 'delete_match']) && $password !== '3005') {
+        echo json_encode(['success' => false, 'message' => 'Wrong password!']);
+        exit;
+    }
+
+    switch ($action) {
+        case 'save_football':
+            try {
+                $stmt = $pdo->prepare("INSERT INTO football_matches (name, match_date, score1, score2, score3, home_xg, home_xga, away_xg, away_xga, result, best_bet, best_conf, second_bet, second_conf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([
+                    $_POST['name'],
+                    $_POST['date'],
+                    $_POST['score1'],
+                    $_POST['score2'],
+                    $_POST['score3'],
+                    $_POST['home_xg'],
+                    $_POST['home_xga'],
+                    $_POST['away_xg'],
+                    $_POST['away_xga'],
+                    $_POST['result'],
+                    $_POST['best_bet'],
+                    $_POST['best_conf'],
+                    $_POST['second_bet'],
+                    $_POST['second_conf']
+                ]);
+                echo json_encode(['success' => true, 'message' => 'Football match saved!']);
+            } catch (PDOException $e) {
+                echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+            }
+            break;
+
+        case 'save_basketball':
+            try {
+                $stmt = $pdo->prepare("INSERT INTO basketball_matches (name, match_date, home1, home2, home3, line_home, away1, away2, away3, line_away, match_line, verdict_match, verdict_home, verdict_away) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([
+                    $_POST['name'],
+                    $_POST['date'],
+                    $_POST['home1'],
+                    $_POST['home2'],
+                    $_POST['home3'],
+                    $_POST['line_home'],
+                    $_POST['away1'],
+                    $_POST['away2'],
+                    $_POST['away3'],
+                    $_POST['line_away'],
+                    $_POST['match_line'],
+                    $_POST['verdict_match'],
+                    $_POST['verdict_home'],
+                    $_POST['verdict_away']
+                ]);
+                echo json_encode(['success' => true, 'message' => 'Basketball match saved!']);
+            } catch (PDOException $e) {
+                echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+            }
+            break;
+
+        case 'save_nba':
+            try {
+                $stmt = $pdo->prepare("INSERT INTO nba_matches (name, match_date, home1, home2, home3, line_home, away1, away2, away3, line_away, match_line, verdict_match, verdict_home, verdict_away) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([
+                    $_POST['name'],
+                    $_POST['date'],
+                    $_POST['home1'],
+                    $_POST['home2'],
+                    $_POST['home3'],
+                    $_POST['line_home'],
+                    $_POST['away1'],
+                    $_POST['away2'],
+                    $_POST['away3'],
+                    $_POST['line_away'],
+                    $_POST['match_line'],
+                    $_POST['verdict_match'],
+                    $_POST['verdict_home'],
+                    $_POST['verdict_away']
+                ]);
+                echo json_encode(['success' => true, 'message' => 'NBA match saved!']);
+            } catch (PDOException $e) {
+                echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+            }
+            break;
+
+        case 'delete_match':
+            try {
+                $table = $_POST['table'];
+                $id = $_POST['id'];
+                $allowedTables = ['football_matches', 'basketball_matches', 'nba_matches'];
+                if (in_array($table, $allowedTables)) {
+                    $stmt = $pdo->prepare("DELETE FROM {$table} WHERE id = ?");
+                    $stmt->execute([$id]);
+                    echo json_encode(['success' => true, 'message' => 'Match deleted!']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Invalid table!']);
+                }
+            } catch (PDOException $e) {
+                echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+            }
+            break;
+
+        case 'load_matches':
+            try {
+                $type = $_POST['type'];
+                $table = '';
+                switch ($type) {
+                    case 'football':
+                        $table = 'football_matches';
+                        break;
+                    case 'basketball':
+                        $table = 'basketball_matches';
+                        break;
+                    case 'nba':
+                        $table = 'nba_matches';
+                        break;
+                    default:
+                        echo json_encode(['success' => false, 'message' => 'Invalid type!']);
+                        exit;
+                }
+                $stmt = $pdo->prepare("SELECT * FROM {$table} ORDER BY created_at DESC LIMIT 35");
+                $stmt->execute();
+                $matches = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode(['success' => true, 'matches' => $matches]);
+            } catch (PDOException $e) {
+                echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+            }
+            break;
+    }
+    exit;
+}
 
 require_once 'header.php';
-
 ?>
 
 
