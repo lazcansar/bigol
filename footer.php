@@ -59,9 +59,20 @@
             <span class="font-semibold text-gray-800 dark:text-gray-100">${match.name || 'Unnamed Match'}</span>
             <span class="text-gray-500 dark:text-gray-300 text-sm">${match.match_date || 'No date'}</span>
           </div>
-          <button onclick="deleteMatch('${type}', ${match.id})" class="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 p-1 rounded-full hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors">
+
+              <?php
+// Admin Role View Save Button Football
+@$role = $_SESSION['role'];
+
+if ($role == 1) {
+    echo '
+    <button onclick="deleteMatch(\'${type}\', ${match.id})" class="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 p-1 rounded-full hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors">
             <i class="fas fa-trash"></i>
           </button>
+    ';
+    }
+?>
+
         </div>
         <div class="text-sm">`;
             if (type === 'football') {

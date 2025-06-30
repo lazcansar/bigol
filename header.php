@@ -105,6 +105,14 @@ require_once 'dbCon.php';
                 <button onclick="showSection('nba')" class="nav-btn px-3 py-2 rounded-lg font-medium text-nba-primary dark:text-nba-accent hover:bg-nba-primary/10 dark:hover:bg-nba-accent/20 transition">
                     <i class="fas fa-trophy mr-1"></i>NBA
                 </button>
+                <?php
+                @$email = $_SESSION['email'];
+                if ($email) {
+                    echo '
+                    <a href="logout.php"><i class="fas fa-sign-out"></i> Çıkış</a>
+                    ';
+                }
+                ?>
             </div>
         </div>
     </div>
