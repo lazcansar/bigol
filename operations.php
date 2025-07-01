@@ -37,6 +37,7 @@ if (isset($_POST['login'])) {
         $_SESSION['email'] = $row['email'];
         $_SESSION['name'] = $row['name'];
         $_SESSION['role'] = $row['role'];
+        $_SESSION['ibanConfirm'] = $row['ibanConfirm'];
         if ($row['role'] == '1') {
             header("Location: adminProfile.php");
             exit();
