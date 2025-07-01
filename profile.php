@@ -6,6 +6,13 @@ require_once 'component.php';
 @$role = $_SESSION['role'];
 @$name = $_SESSION['name'];
 @$id = $_SESSION['id'];
+
+if (empty($email)) {
+    echo '<script>';
+    echo 'window.location.href = "login.php";';
+    echo '</script>';
+}
+
 ?>
 <section class="px-4 sm:px-0 bg-gray-100 w-full">
     <div class="flex flex-row items-center justify-between">

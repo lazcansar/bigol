@@ -91,7 +91,7 @@ require_once 'dbCon.php';
 <nav class="sticky top-0 z-40 backdrop-blur-xl bg-white/90 dark:bg-gray-900/80 shadow-md border-b border-gray-100 dark:border-gray-800 transition-all duration-300 animate__animated animate__slideInDown">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-            <a class="flex items-center gap-3" href="/">
+            <a class="flex items-center gap-3" href="./">
                 <img src="logo-harbigol.png" class="w-12 h-12 rounded-full border-2 border-yellow-400 shadow" alt="Logo">
                 <span class="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-blue-500 text-transparent bg-clip-text animate__animated animate__pulse animate__infinite">Harbigol</span>
             </a>
@@ -106,6 +106,12 @@ require_once 'dbCon.php';
                     <i class="fas fa-trophy mr-1"></i>NBA
                 </button>
                 <?php
+                @$role = $_SESSION['role'];
+                if ($role == '1') {
+                    echo '
+                    <a href="adminProfile.php"><i class="fas fa-sign-out"></i> Admin Paneli</a>
+                    ';
+                }
                 @$email = $_SESSION['email'];
                 if ($email) {
                     echo '
