@@ -104,12 +104,21 @@ if ($rows->length > 0) {
         if ($actualResultNode->length > 0 && !empty(trim($actualResultNode->item(0)->nodeValue))) {
             $match_data['actual_result'] = trim($actualResultNode->item(0)->nodeValue);
         } else {
-            $match_data['actual_result'] = 'Henüz yok / Bilinmiyor';
+            $match_data['actual_result'] = 'Henüz yok';
         }
 
         $all_matches_data[] = $match_data;
     }
 // Skor Tablosu
+    echo '
+<div class="flex gap-4 mb-4">
+    <button onclick="filterMatches(\'today\')" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Bugün</button>
+    <button onclick="filterMatches(\'tomorrow\')" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Yarın</button>
+    <button onclick="filterMatches(\'dayafter\')" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded">Sonraki Gün</button>
+</div>
+';
+
+
     echo '
    
 <div class="relative overflow-x-auto">
@@ -133,9 +142,35 @@ if ($rows->length > 0) {
     <tbody>
     ';
 
+    // Bugünün, yarının ve ertesi günün tarihlerini dizi olarak al (gün.ay.)
+    $today = new DateTime();
+    $tomorrow = (clone $today)->modify('+1 day');
+    $day_after_tomorrow = (clone $today)->modify('+2 day');
+
+    $valid_dates = [
+        $today->format('d.m.'),
+        $tomorrow->format('d.m.'),
+        $day_after_tomorrow->format('d.m.'),
+    ];
+
+
     // Toplanan verileri ekrana yazdır
     foreach ($all_matches_data as $match) {
-        echo '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        $timeParts = explode(' ', $match['match_time']);
+        $datePart = isset($timeParts[0]) ? trim($timeParts[0]) : '';
+
+        if ($datePart == $today->format('d.m.')) {
+            $data_date = 'today';
+        } elseif ($datePart == $tomorrow->format('d.m.')) {
+            $data_date = 'tomorrow';
+        } elseif ($datePart == $day_after_tomorrow->format('d.m.')) {
+            $data_date = 'dayafter';
+        } else {
+            continue; // Sadece 3 güne ait maçları göster
+        }
+
+        echo '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" data-date="'.$data_date.'">
+
 
         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
             '.$match['match_time'].'
@@ -165,4 +200,18 @@ if ($rows->length > 0) {
     echo "Web sayfasında belirtilen kriterlere uygun maç kaydı bulunamadı. Lütfen HTML yapısını veya XPath sorgusunu tekrar kontrol edin.\n";
 }
 
+echo '
+<script>
+function filterMatches(dayKey) {
+    const rows = document.querySelectorAll("tbody tr[data-date]");
+    rows.forEach(row => {
+        if (row.getAttribute("data-date") === dayKey) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+}
+</script>
+';
 ?>
