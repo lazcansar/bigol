@@ -7,6 +7,11 @@ require_once 'component.php';
 @$name = $_SESSION['name'];
 @$id = $_SESSION['id'];
 
+if (empty($email)) {
+    echo '<script>';
+    echo 'window.location.href = "login.php";';
+    echo '</script>';
+}
 
 // Status Change Request Method Get
 if (@$_GET['userIdChangeIbanStatus']) {
