@@ -327,15 +327,19 @@ require_once 'header.php';
             // Basketball Matches Results
             @$email = $_SESSION['email'];
             @$ibanConfirm = $_SESSION['ibanConfirm'];
-            if ($ibanConfirm == 1) {
-                echo '<div class="glass p-6">
+
+            if ($email) {
+                if ($ibanConfirm == 1) {
+                    echo '<div class="glass p-6">
             <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Match History</h3>
             <div id="savedBasketballMatches" class="space-y-4"></div>
           </div>';
-                }elseif($ibanConfirm == 0) {
+                }
+                if($ibanConfirm == 0) {
                     echo '<div class="px-4 py-2 bg-amber-500 text-white rounded">
                 Kayıtlı maçları görüntülemek için üyeliğinizi premiuma yükseltin. <a href="profile.php" class="font-bold underline">Profil Sayfam.</a>
                 </div>';
+                }
             } else {
                 echo '
                 <div class="px-4 py-2 bg-amber-500 text-white rounded">
@@ -421,15 +425,19 @@ require_once 'header.php';
             // NBA Matches Results
             @$email = $_SESSION['email'];
             @$ibanConfirm = $_SESSION['ibanConfirm'];
-            if ($ibanConfirm == 1) {
-                echo '<div class="glass p-6">
+
+            if ($email) {
+                if ($ibanConfirm == 1) {
+                    echo '<div class="glass p-6">
             <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Match History</h3>
             <div id="savedNBAMatches" class="space-y-4"></div>
           </div>';
-                }elseif($ibanConfirm == 0) {
+                }
+                if($ibanConfirm == 0) {
                     echo '<div class="px-4 py-2 bg-amber-500 text-white rounded">
                 Kayıtlı maçları görüntülemek için üyeliğinizi premiuma yükseltin. <a href="profile.php" class="font-bold underline">Profil Sayfam.</a>
                 </div>';
+                }
             } else {
                 echo '
                 <div class="px-4 py-2 bg-amber-500 text-white rounded">
