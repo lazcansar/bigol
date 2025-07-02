@@ -1,6 +1,4 @@
 <?php
-require_once 'header.php';
-
 $url = 'https://www.predicd.com/en/football/match-schedule/'; // Hedef URL
 
 // cURL oturumu başlat
@@ -51,8 +49,6 @@ $all_matches_data = [];
 $rows = $xpath->query('//tbody/tr[contains(@class, "tr-body") and contains(@class, "accordion-toggle")]');
 
 if ($rows->length > 0) {
-    echo "<h2>Yapay Zeka Skor 1 (predicd.com):</h2>\n";
-    echo "<pre>";
 
     // For döngüsü ile her bir maç satırını işleyin
     for ($i = 0; $i < $rows->length; $i++) {
@@ -120,16 +116,16 @@ if ($rows->length > 0) {
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="text-xs text-gray-700 uppercase bg-gray-400 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-        <th scope="col" class="px-6 py-3">
+        <th scope="col" class="px-6 py-3 text-center">
             Başlama Zamanı
         </th>
-        <th scope="col" class="px-6 py-3">
+        <th scope="col" class="px-6 py-3 text-center">
             Ev Sahibi
         </th>
-        <th scope="col" class="px-6 py-3">
+        <th scope="col" class="px-6 py-3 text-center">
             Skor
         </th>
-        <th scope="col" class="px-6 py-3">
+        <th scope="col" class="px-6 py-3 text-center">
             Deplasman
         </th>
     </tr>
@@ -158,7 +154,6 @@ if ($rows->length > 0) {
 
 
     }
-    echo "</pre>";
 
     echo '
     </tbody>
@@ -170,8 +165,4 @@ if ($rows->length > 0) {
     echo "Web sayfasında belirtilen kriterlere uygun maç kaydı bulunamadı. Lütfen HTML yapısını veya XPath sorgusunu tekrar kontrol edin.\n";
 }
 
-
-
-
-require_once 'footer.php';
 ?>
