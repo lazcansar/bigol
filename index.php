@@ -268,7 +268,7 @@ require_once 'component.php';
                     include 'skor2.php';
                     break;
                 case 'skor3';
-                    include 'test.php';
+                    include 'skor3.php';
                     break;
 
                 default;
