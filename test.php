@@ -23,6 +23,7 @@ $xpath = new DOMXPath($dom);
 // Tablo satırlarını seç
 $rows = $xpath->query('//tr[starts-with(@class, "ninja_table_row_")]');
 
+
 echo '<div class="relative overflow-x-auto">
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="matchTable">
     <thead class="text-xs text-gray-700 uppercase bg-gray-400 dark:bg-gray-700 dark:text-gray-400">
@@ -35,8 +36,20 @@ echo '<div class="relative overflow-x-auto">
     </thead>
     <tbody>';
 
+$i = 0;
 foreach ($rows as $row) {
+    $i++;
+    if ($i <= 6) {
+        continue;
+    }
+
+
     $cols = $xpath->query('.//td', $row);
+
+    if ($cols->length < 4) {
+        continue;
+    }
+
 
     // Tarih/Saat
     $datetime = trim($cols[0]->textContent);
@@ -49,21 +62,18 @@ foreach ($rows as $row) {
             $teams[] = trim($node->textContent);
         }
     }
-
     $home = $teams[0] ?? '';
     $away = $teams[1] ?? '';
 
     // Skor ve oran
     $score = trim($cols[2]->textContent);
-    $odd = trim($cols[3]->textContent);
 
-    echo "<tr>
-        <td>{$datetime}</td>
-        <td>{$home}</td>
-        <td>{$away}</td>
-        <td>{$score}</td>
-        <td>{$odd}</td>
-    </tr>";
+    echo '<tr>
+        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">'.$datetime.'</td>
+        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">'.$home.'</td>
+        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">'.$score.'</td>
+        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">'.$away.'</td>
+    </tr>';
 }
 
 echo '    </tbody>
