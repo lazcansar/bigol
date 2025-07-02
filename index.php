@@ -150,6 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 require_once 'header.php';
+require_once 'component.php';
 ?>
 
 
@@ -236,14 +237,12 @@ require_once 'header.php';
                 </div>';
                 }
             }else {
-                echo '
-                <div class="px-4 py-2 bg-amber-500 text-white rounded">
-                Kayıtlı maçları görüntülemek için lütfen premium üye olun. <a href="login.php" class="font-bold underline">Hemen giriş yap.</a>
-                </div>
-                ';
+                echo loginCard();
             }
 
             ?>
+
+
 
         </div>
       </div>
@@ -341,11 +340,7 @@ require_once 'header.php';
                 </div>';
                 }
             } else {
-                echo '
-                <div class="px-4 py-2 bg-amber-500 text-white rounded">
-                Kayıtlı maçları görüntülemek için lütfen premium üye olun. <a href="login.php" class="font-bold underline">Hemen giriş yap.</a>
-                </div>
-                ';
+                echo loginCard();
             }
             ?>
 
@@ -439,14 +434,9 @@ require_once 'header.php';
                 </div>';
                 }
             } else {
-                echo '
-                <div class="px-4 py-2 bg-amber-500 text-white rounded">
-                Kayıtlı maçları görüntülemek için lütfen premium üye olun. <a href="login.php" class="font-bold underline">Hemen giriş yap.</a>
-                </div>
-                ';
+                echo loginCard();
             }
             ?>
-
 
 
         </div>

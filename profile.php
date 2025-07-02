@@ -43,8 +43,14 @@ if (empty($email)) {
             ?>
             <p class="px-4 py-2 mb-4 bg-blue-600 text-white">Premium Üyelik: <?= $ibanStatus ?></p>
             <p class="px-4 py-2 bg-amber-500 text-white mb-4"><i class="bi bi-info-circle"></i> Tahminler sayfasını görüntüleyebilmek için <strong>premium üye</strong> olmanız gereklidir.</p>
-            <p class="px-4 py-2 bg-amber-700 text-white mb-4"><i class="bi bi-info-circle"></i> 30 gün süre ile <strong>Premium üye</strong> olabilmek için aşağıda belirtilen IBAN numarasına 100 TL göndermeniz ve gönderi sonrasında <a href="mailto:" class="font-bold">test@harbigol.com</a> posta adresine ödeme bildirimine ilişkin mail göndermeniz gerekir.</p>
-            <p class="px-4 py-2 bg-teal-900 text-white">TR12 0001 0000 1200 1300 0434 09</p>
+            <p class="px-4 py-2 bg-amber-700 text-white mb-4"><i class="bi bi-info-circle"></i> 30 gün süreyle Premium Üye olabilmek için, aşağıda belirtilen IBAN numarasına <strong>350 TL</strong> göndermeniz gerekmektedir.</p>
+            <p class="px-4 py-2 bg-amber-700 text-white mb-4"><i class="bi bi-envelope"></i> <a href="mailto:fatihgolmak@gmail.com" class="font-bold">fatihgolmak@gmail.com</a> adresine e-posta göndermeniz zorunludur.</p>
+            <p class="px-4 py-2 bg-amber-700 text-white mb-4"><i class="bi bi-files"></i> Ödeme sırasında açıklama kısmına sadece mail adresinizi yazınız.
+                Başka herhangi bir açıklama girilmesi durumunda üyelikler onaylanmayacaktır.</p>
+            <p class="px-4 py-2 bg-teal-900 text-white">IBAN Bilgisi:
+                <strong>TR48 0001 2009 6900 0099 0000 07</strong><br>
+                Alıcı Adı: Fatih Birinci<br>
+                Açıklama: mail adresiniz (örnek: deneme@test.com)</p>
         </div>
     </div>
 </section>
