@@ -99,7 +99,7 @@ require_once 'dbCon.php';
                 <button onclick="showSection('football')" class="nav-btn px-3 py-2 rounded-lg font-medium text-football-primary dark:text-football-accent hover:bg-football-primary/10 dark:hover:bg-football-accent/20 transition">
                     <i class="fas fa-futbol mr-1"></i>Football
                 </button>
-                <a href="adminProfile.php"><i class="fas fa-sign-in"></i> Giriş Yap</a>
+                <a href="login.php"><i class="fas fa-sign-in"></i> Giriş Yap</a>
                 <?php
                 @$role = $_SESSION['role'];
                 if ($role == '1') {

@@ -195,31 +195,41 @@ require_once 'component.php';
           <button onclick="analyzeFootball()" class="w-full mt-4 bg-football-primary hover:bg-football-accent text-white px-6 py-3 rounded-xl font-semibold transform hover:scale-105 transition-all duration-200 shadow">
             <i class="fas fa-calculator mr-2"></i> Analyze
           </button>
-        </div>
-        <div class="lg:col-span-2 flex flex-col space-y-6">
-          <div class="glass p-6">
-            <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Analysis Result</h3>
-            <div id="footballResult" class="text-gray-800 dark:text-gray-200 space-y-4 p-4 bg-gray-100/50 dark:bg-gray-700/30 rounded-lg transition-all duration-200"></div>
+
+            <!-- Left Area Moved-->
+            <div class="glass p-6">
+                <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Analysis Result</h3>
+                <div id="footballResult" class="text-gray-800 dark:text-gray-200 space-y-4 p-4 bg-gray-100/50 dark:bg-gray-700/30 rounded-lg transition-all duration-200"></div>
 
 
-              <?php
-              // Admin Role View Save Button Football
-              @$role = $_SESSION['role'];
+                <?php
+                // Admin Role View Save Button Football
+                @$role = $_SESSION['role'];
 
-              if ($role == 1) {
-                  echo '
+                if ($role == 1) {
+                    echo '
                   <button onclick="saveFootballMatch()" class="mt-4 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transform hover:scale-105 transition-all duration-200 shadow">
               <i class="fas fa-save mr-2"></i> Save
             </button>
                   ';
 
-              }
+                }
 
 
-              ?>
+                ?>
 
 
-          </div>
+            </div>
+
+            <!-- Left Area Moved-->
+
+
+
+        </div>
+
+
+
+        <div class="lg:col-span-2 flex flex-col space-y-6">
             <?php
             // Football Matches Results
             @$email = $_SESSION['email'];
@@ -240,7 +250,34 @@ require_once 'component.php';
                 echo loginCard();
             }
 
+
+            $page = isset($_GET['page']) ? $_GET['page'] : 'default';
             ?>
+            <div class="w-full">
+                <div class="flex flex-row flex-wrap items-center justify-between">
+                    <a href="?page=skor1" class="border bg-white rounded px-4 py-2">Yapay Zeka Skor 1</a>
+                    <a href="?page=skor2" class="border bg-white rounded px-4 py-2">Yapay Zeka Skor 2</a>
+                    <a href="?page=skor3" class="border bg-white rounded px-4 py-2">Yapay Zeka Skor 3</a>
+                </div>
+            </div>
+
+            <?php
+
+            switch ($page) {
+                case 'skor2';
+                    include 'skor2.php';
+                    break;
+
+                default;
+                    include 'skor1.php';
+                    break;
+            }
+
+            ?>
+
+
+
+
 
 
 
