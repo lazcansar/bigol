@@ -51,7 +51,7 @@ $all_matches_data = [];
 $rows = $xpath->query('//tbody/tr[contains(@class, "tr-body") and contains(@class, "accordion-toggle")]');
 
 if ($rows->length > 0) {
-    echo "<h2>Maç Tahminleri (predicd.com):</h2>\n";
+    echo "<h2>Yapay Zeka Skor 1 (predicd.com):</h2>\n";
     echo "<pre>";
 
     // For döngüsü ile her bir maç satırını işleyin
